@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold text-center mb-8">Thông tin thời tiết</h1>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Lượng mưa</h2>
+        <p class="text-gray-600">Lượng mưa trung bình trong ngày là <span class="font-bold">XXX</span>.</p>
+        <p class="text-gray-600">Lượng mưa trung bình trong tuần là <span class="font-bold">XXX</span>.</p>
+        <p class="text-gray-600">Lượng mưa trung bình trong tháng là <span class="font-bold">XXX</span>.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Độ ẩm</h2>
+        <p class="text-gray-600">Độ ẩm trung bình trong ngày là <span class="font-bold">75%</span>.</p>
+        <p class="text-gray-600">Độ ẩm trung bình trong tuần là <span class="font-bold">72%</span>.</p>
+        <p class="text-gray-600">Độ ẩm trung bình trong tháng là <span class="font-bold">70%</span>.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Độ cao mực nước</h2>
+        <p class="text-gray-600">Độ cao mực nước trung bình trong ngày là <span class="font-bold">1.5 m</span>.</p>
+        <p class="text-gray-600">Độ cao mực nước trung bình trong tuần là <span class="font-bold">1.4 m</span>.</p>
+        <p class="text-gray-600">Độ cao mực nước trung bình trong tháng là <span class="font-bold">1.3 m</span>.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-lg p-6 relative">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Bản đồ</h2>
+        <!-- Giả sử có một hàm JavaScript để vẽ bản đồ và hình tứ giác -->
+        <!-- Các vị trí được đánh dấu là A, B, C, D -->
+        <!-- Hình tứ giác được lấp đầy bởi màu xanh nhạt -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61345.93908353484!2d108.17084356414419!3d16.05919961217568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b6f66cbec5%3A0xbc0f57b1afe192de!2zSOG6o2kgQ2jDonUsIMSQw6AgTuG6tW5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1697070952035!5m2!1svi!2s" width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="absolute inset-0 border-4 border-blue-500 rounded-lg"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
