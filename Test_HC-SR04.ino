@@ -1,29 +1,36 @@
 #include <Arduino.h>
 
 // Định nghĩa các trig và echo
-const int TRIG_PIN = 8;
-const int ECHO_PIN = 7;
+const int trigPin = 8;
+const int echoPin = 7;
 
 void setup() {
   Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 }
 
 // Định nghĩa hàm để đo khoảng cách đến một vật thể
 int measure_distance() {
   // Gửi xung đến chân kích hoạt
-  digitalWrite(TRIG_PIN, HIGH);
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
+ 
+  // Read the signal from the sensor: a HIGH pulse whose
+  // duration is the time (in microseconds) from the sending
+  // of the ping to the reception of its echo off of an object.
+  pinMode(echoPin, INPUT);
+  long duration = pulseIn(echoPin, HIGH);
 
-  // Chờ xung hồi âm
-  unsigned long start_time = micros();
-  while (!digitalRead(ECHO_PIN)) {
-  }
-  unsigned long end_time = micros();
+  // Chuyển đổi thời gian thành khoảng cách
+  float distance = duration / 2 / 29.1;
 
-  // Tính toán khoảng cách
-  return pulseIn(ECHO_PIN, HIGH) * 0.0343 / 2;
+  return distance;
 }
+
 
 // Định nghĩa hàm để lấy nhiều lần đo và lấy trung bình của chúng
 int take_average_measurement(int num_samples) {
@@ -61,8 +68,8 @@ int temperature_compensate(int distance, float temperature) {
 
 // Bắt đầu vòng lặp đo
 void loop() {
-  // Chỉnh lại cảm biến
-  calibrate_sensor(30);
+
+  calibrate_sensor(25);
 
   // Bắt đầu vòng lặp đo
   while (true) {
