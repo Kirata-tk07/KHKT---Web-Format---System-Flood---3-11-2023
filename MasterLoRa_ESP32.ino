@@ -6,7 +6,7 @@
 #define CHANNEL_ID 2290721
 #define CHANNEL_API "C1ZG9P1H95UC6QYY"
 // Định nghĩa số lượng Slaves
-#define NUMBER_OF_SLAVES 
+#define NUMBER_OF_SLAVES 2
 
 const char* ssid = "HOCSINH";
 const char* password = "";
@@ -26,7 +26,6 @@ struct lora_request_t {
 struct lora_response_t {
   uint8_t id;
   float temperature;  // Thêm biến temperature để lưu trữ nhiệt độ
-  float humidity;
   int cm;
 };
 
@@ -88,9 +87,6 @@ void loop() {
       Serial.print("Temperature: ");
       Serial.print(lora_response.temperature);
       Serial.println(" °C");
-      Serial.print("Humidity: ");
-      Serial.print(lora_response.humidity);
-      Serial.println(" %");
     }
     if (lora_response.id == 2) {
       Serial.print("Response from SlaveID: ");
@@ -101,7 +97,6 @@ void loop() {
   }
 
   ThingSpeak.setField(1, lora_response.temperature);
-  ThingSpeak.setField(2, lora_response.humidity);
   ThingSpeak.setField(3, lora_response.cm);
 
 
