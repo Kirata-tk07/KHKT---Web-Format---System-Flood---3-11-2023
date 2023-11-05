@@ -6,6 +6,7 @@
 #define DHTPIN 5
 #define DHTTYPE 11
 
+DHT dht(DHTPIN, DHTTYPE);
 SoftwareSerial lora(13, 15);  // RX, TX
 
 int trigPin = 11;  // Trigger
@@ -87,6 +88,7 @@ int temperature_compensate(int distance, float temperature) {
 
 void loop() {
   int distance = measure_distance();
+  int compensated_distance = 0;
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
 
@@ -104,7 +106,7 @@ void loop() {
 
     // Bù nhiệt độ cho phép đo
     float temperature = 25;
-    int compensated_distance = temperature_compensate(measured_distance, temperature);
+    compensated_distance = temperature_compensate(measured_distance, temperature);
 
     // In phép đo đã bù
     Serial.print("Distance: ");
