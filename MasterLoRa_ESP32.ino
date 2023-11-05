@@ -25,7 +25,8 @@ struct lora_request_t {
 
 struct lora_response_t {
   uint8_t id;
-  float temperature;  // Thêm biến temperature để lưu trữ nhiệt độ
+  float temperature;
+  float humidity;
   int cm;
 };
 
@@ -87,8 +88,23 @@ void loop() {
       Serial.print("Temperature: ");
       Serial.print(lora_response.temperature);
       Serial.println(" °C");
+      Serial.print("Humidity: ");
+      Serial.print(lora_response.humidity);
+      Serial.println(" %");
+      Serial.print("Response from SlaveID: ");
+      Serial.println(lora_response.id);
+      Serial.print("Distance: ");
+      Serial.print(lora_response.cm);
     }
     if (lora_response.id == 2) {
+      Serial.print("Response from SlaveID: ");
+      Serial.println(lora_response.id);
+      Serial.print("Temperature: ");
+      Serial.print(lora_response.temperature);
+      Serial.println(" °C");
+      Serial.print("Humidity: ");
+      Serial.print(lora_response.humidity);
+      Serial.println(" %");
       Serial.print("Response from SlaveID: ");
       Serial.println(lora_response.id);
       Serial.print("Distance: ");
@@ -97,6 +113,7 @@ void loop() {
   }
 
   ThingSpeak.setField(1, lora_response.temperature);
+  ThingSpeak.setField(2, lora_response.humidity);
   ThingSpeak.setField(3, lora_response.cm);
 
 
